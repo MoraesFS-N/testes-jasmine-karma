@@ -4,7 +4,7 @@ import { PhotoFrameModule } from "./photo-frame.module";
 
 describe(PhotoFrameComponent.name, () => {
 
-  let fixture: ComponentFixture<PhotoFrameComponent> = null;
+  let fixture: ComponentFixture<PhotoFrameComponent>;
   let component: PhotoFrameComponent;
 
   beforeEach( async () => {
@@ -12,6 +12,13 @@ describe(PhotoFrameComponent.name, () => {
       imports: [PhotoFrameModule]
     }).compileComponents();
   });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PhotoFrameComponent);
+    component = fixture.componentInstance;
+  });
+
+
 
   it('Should create component', () => {
 
@@ -45,5 +52,16 @@ describe(PhotoFrameComponent.name, () => {
     expect(times).toBe(2);
 
   }));
+
+  it(`Should display number of likes when (@Input likes) is incremented`, () => {
+
+    fixture.detectChanges();
+    component.likes++;
+    fixture.detectChanges();
+
+    const element: HTMLSpanElement = fixture.nativeElement.querySelector('.like-counter');
+
+    expect(element.textContent.trim()).toBe('1');
+  });
 
 });
