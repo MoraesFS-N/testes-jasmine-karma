@@ -9,15 +9,8 @@ import { PhotoBoardService } from './shared/components/photo-board/services/phot
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
 
   title = 'Angular testing';
-  public photos$: Observable<Photo[]>;
-
-  constructor( private photoBoardService: PhotoBoardService ) { }
-
-  public ngOnInit(): void {
-    this.photos$ = this.photoBoardService.getPhotos();
-  }
 
 }
